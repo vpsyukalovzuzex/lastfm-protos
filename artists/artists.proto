@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+option go_package = "last-fm-proto/artists";
+
+package proto;
+
+message ArtistInfoReq {
+    string name = 1;
+}
+
+message ArtistInfoRes {
+    ArtistInfo artist = 1;
+}
+
+message ArtistInfo {
+    string name = 1;
+
+    int32 listeners = 2;
+    int32 playcounts = 3;
+
+    repeated string genres = 4;
+}
+
+service ArtistsService {
+    rpc ArtistInfo(ArtistInfoReq) returns (ArtistInfoRes);
+}

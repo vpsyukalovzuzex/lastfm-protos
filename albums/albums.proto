@@ -1,0 +1,37 @@
+syntax = "proto3";
+
+option go_package = "last-fm-proto/albums";
+
+package proto;
+
+message AlbumInfoReq {
+    string album = 1;
+    string artist = 2;
+}
+
+message AlbumInfoRes {
+    AlbumInfo album = 1;
+}
+
+message AlbumInfo {
+    string name = 1;
+    string artist = 2;
+
+    int32 listeners = 3;
+    int32 playcounts = 4;
+
+    repeated string genres = 5;
+
+    repeated AlbumTrackInfo tracks = 6;
+}
+
+message AlbumTrackInfo {
+    string name = 1;
+    string artist = 2;
+
+    int32 duration = 3;
+}
+
+service AlbumsService {
+    rpc AlbumInfo(AlbumInfoReq) returns (AlbumInfoRes);
+}
