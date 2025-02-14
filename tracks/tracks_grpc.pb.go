@@ -19,7 +19,8 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	TracksService_TrackInfo_FullMethodName = "/proto.TracksService/TrackInfo"
+	TracksService_TrackInfo_FullMethodName   = "/proto.TracksService/TrackInfo"
+	TracksService_TrackSearch_FullMethodName = "/proto.TracksService/TrackSearch"
 )
 
 // TracksServiceClient is the client API for TracksService service.
@@ -27,6 +28,7 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type TracksServiceClient interface {
 	TrackInfo(ctx context.Context, in *TrackInfoReq, opts ...grpc.CallOption) (*TrackInfoRes, error)
+	TrackSearch(ctx context.Context, in *TrackSearchReq, opts ...grpc.CallOption) (*TrackSearchRes, error)
 }
 
 type tracksServiceClient struct {
@@ -47,11 +49,22 @@ func (c *tracksServiceClient) TrackInfo(ctx context.Context, in *TrackInfoReq, o
 	return out, nil
 }
 
+func (c *tracksServiceClient) TrackSearch(ctx context.Context, in *TrackSearchReq, opts ...grpc.CallOption) (*TrackSearchRes, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(TrackSearchRes)
+	err := c.cc.Invoke(ctx, TracksService_TrackSearch_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // TracksServiceServer is the server API for TracksService service.
 // All implementations must embed UnimplementedTracksServiceServer
 // for forward compatibility.
 type TracksServiceServer interface {
 	TrackInfo(context.Context, *TrackInfoReq) (*TrackInfoRes, error)
+	TrackSearch(context.Context, *TrackSearchReq) (*TrackSearchRes, error)
 	mustEmbedUnimplementedTracksServiceServer()
 }
 
@@ -64,6 +77,9 @@ type UnimplementedTracksServiceServer struct{}
 
 func (UnimplementedTracksServiceServer) TrackInfo(context.Context, *TrackInfoReq) (*TrackInfoRes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method TrackInfo not implemented")
+}
+func (UnimplementedTracksServiceServer) TrackSearch(context.Context, *TrackSearchReq) (*TrackSearchRes, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method TrackSearch not implemented")
 }
 func (UnimplementedTracksServiceServer) mustEmbedUnimplementedTracksServiceServer() {}
 func (UnimplementedTracksServiceServer) testEmbeddedByValue()                       {}
@@ -104,6 +120,24 @@ func _TracksService_TrackInfo_Handler(srv interface{}, ctx context.Context, dec 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _TracksService_TrackSearch_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TrackSearchReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TracksServiceServer).TrackSearch(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: TracksService_TrackSearch_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TracksServiceServer).TrackSearch(ctx, req.(*TrackSearchReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // TracksService_ServiceDesc is the grpc.ServiceDesc for TracksService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -114,6 +148,10 @@ var TracksService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "TrackInfo",
 			Handler:    _TracksService_TrackInfo_Handler,
+		},
+		{
+			MethodName: "TrackSearch",
+			Handler:    _TracksService_TrackSearch_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

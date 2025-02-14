@@ -19,7 +19,8 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	ArtistsService_ArtistInfo_FullMethodName = "/proto.ArtistsService/ArtistInfo"
+	ArtistsService_ArtistInfo_FullMethodName   = "/proto.ArtistsService/ArtistInfo"
+	ArtistsService_ArtistSearch_FullMethodName = "/proto.ArtistsService/ArtistSearch"
 )
 
 // ArtistsServiceClient is the client API for ArtistsService service.
@@ -27,6 +28,7 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type ArtistsServiceClient interface {
 	ArtistInfo(ctx context.Context, in *ArtistInfoReq, opts ...grpc.CallOption) (*ArtistInfoRes, error)
+	ArtistSearch(ctx context.Context, in *ArtistSearchReq, opts ...grpc.CallOption) (*ArtistSearchRes, error)
 }
 
 type artistsServiceClient struct {
@@ -47,11 +49,22 @@ func (c *artistsServiceClient) ArtistInfo(ctx context.Context, in *ArtistInfoReq
 	return out, nil
 }
 
+func (c *artistsServiceClient) ArtistSearch(ctx context.Context, in *ArtistSearchReq, opts ...grpc.CallOption) (*ArtistSearchRes, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ArtistSearchRes)
+	err := c.cc.Invoke(ctx, ArtistsService_ArtistSearch_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // ArtistsServiceServer is the server API for ArtistsService service.
 // All implementations must embed UnimplementedArtistsServiceServer
 // for forward compatibility.
 type ArtistsServiceServer interface {
 	ArtistInfo(context.Context, *ArtistInfoReq) (*ArtistInfoRes, error)
+	ArtistSearch(context.Context, *ArtistSearchReq) (*ArtistSearchRes, error)
 	mustEmbedUnimplementedArtistsServiceServer()
 }
 
@@ -64,6 +77,9 @@ type UnimplementedArtistsServiceServer struct{}
 
 func (UnimplementedArtistsServiceServer) ArtistInfo(context.Context, *ArtistInfoReq) (*ArtistInfoRes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ArtistInfo not implemented")
+}
+func (UnimplementedArtistsServiceServer) ArtistSearch(context.Context, *ArtistSearchReq) (*ArtistSearchRes, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ArtistSearch not implemented")
 }
 func (UnimplementedArtistsServiceServer) mustEmbedUnimplementedArtistsServiceServer() {}
 func (UnimplementedArtistsServiceServer) testEmbeddedByValue()                        {}
@@ -104,6 +120,24 @@ func _ArtistsService_ArtistInfo_Handler(srv interface{}, ctx context.Context, de
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ArtistsService_ArtistSearch_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ArtistSearchReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ArtistsServiceServer).ArtistSearch(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ArtistsService_ArtistSearch_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ArtistsServiceServer).ArtistSearch(ctx, req.(*ArtistSearchReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // ArtistsService_ServiceDesc is the grpc.ServiceDesc for ArtistsService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -114,6 +148,10 @@ var ArtistsService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ArtistInfo",
 			Handler:    _ArtistsService_ArtistInfo_Handler,
+		},
+		{
+			MethodName: "ArtistSearch",
+			Handler:    _ArtistsService_ArtistSearch_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

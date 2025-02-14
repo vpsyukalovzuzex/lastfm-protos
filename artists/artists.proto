@@ -5,14 +5,17 @@ option go_package = "last-fm-proto/artists";
 package proto;
 
 message ArtistInfoReq {
-    string name = 1;
+    string artist = 1;
+}
+
+message ArtistSearchReq {
+    string artist = 1;
+
+    int32 limit = 2;
+    int32 page = 3;
 }
 
 message ArtistInfoRes {
-    ArtistInfo artist = 1;
-}
-
-message ArtistInfo {
     string name = 1;
 
     int32 listeners = 2;
@@ -21,6 +24,11 @@ message ArtistInfo {
     repeated string genres = 4;
 }
 
+message ArtistSearchRes {
+    string name = 1;
+}
+
 service ArtistsService {
     rpc ArtistInfo(ArtistInfoReq) returns (ArtistInfoRes);
+    rpc ArtistSearch(ArtistSearchReq) returns (ArtistSearchRes);
 }

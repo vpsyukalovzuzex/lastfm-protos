@@ -5,15 +5,18 @@ option go_package = "last-fm-proto/tracks";
 package proto;
 
 message TrackInfoReq {
-    string album = 1;
-    string artist = 2;
+    string artist = 1;
+    string track = 2;
+}
+
+message TrackSearchReq {
+    string track = 1;
+
+    int32 limit = 2;
+    int32 page = 3;
 }
 
 message TrackInfoRes {
-    TrackInfo track = 1;
-}
-
-message TrackInfo {
     string name = 1;
     string artist = 2;
 
@@ -24,6 +27,14 @@ message TrackInfo {
     repeated string genres = 6;
 }
 
+message TrackSearchRes {
+    string name = 1;
+    string artist = 2;
+
+    int32 listeners = 3;
+}
+
 service TracksService {
     rpc TrackInfo(TrackInfoReq) returns (TrackInfoRes);
+    rpc TrackSearch(TrackSearchReq) returns (TrackSearchRes);
 }

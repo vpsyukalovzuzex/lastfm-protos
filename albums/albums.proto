@@ -9,11 +9,14 @@ message AlbumInfoReq {
     string artist = 2;
 }
 
-message AlbumInfoRes {
-    AlbumInfo album = 1;
+message AlbumSearchReq {
+    string album = 1;
+
+    int32 limit = 2;
+    int32 page = 3;
 }
 
-message AlbumInfo {
+message AlbumInfoRes {
     string name = 1;
     string artist = 2;
 
@@ -32,6 +35,12 @@ message AlbumTrackInfo {
     int32 duration = 3;
 }
 
+message AlbumSearchRes {
+    string name = 1;
+    string artist = 2;
+}
+
 service AlbumsService {
     rpc AlbumInfo(AlbumInfoReq) returns (AlbumInfoRes);
+    rpc AlbumSearch(AlbumSearchReq) returns (AlbumSearchRes);
 }

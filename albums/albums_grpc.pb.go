@@ -19,7 +19,8 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	AlbumsService_AlbumInfo_FullMethodName = "/proto.AlbumsService/AlbumInfo"
+	AlbumsService_AlbumInfo_FullMethodName   = "/proto.AlbumsService/AlbumInfo"
+	AlbumsService_AlbumSearch_FullMethodName = "/proto.AlbumsService/AlbumSearch"
 )
 
 // AlbumsServiceClient is the client API for AlbumsService service.
@@ -27,6 +28,7 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type AlbumsServiceClient interface {
 	AlbumInfo(ctx context.Context, in *AlbumInfoReq, opts ...grpc.CallOption) (*AlbumInfoRes, error)
+	AlbumSearch(ctx context.Context, in *AlbumSearchReq, opts ...grpc.CallOption) (*AlbumSearchRes, error)
 }
 
 type albumsServiceClient struct {
@@ -47,11 +49,22 @@ func (c *albumsServiceClient) AlbumInfo(ctx context.Context, in *AlbumInfoReq, o
 	return out, nil
 }
 
+func (c *albumsServiceClient) AlbumSearch(ctx context.Context, in *AlbumSearchReq, opts ...grpc.CallOption) (*AlbumSearchRes, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(AlbumSearchRes)
+	err := c.cc.Invoke(ctx, AlbumsService_AlbumSearch_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // AlbumsServiceServer is the server API for AlbumsService service.
 // All implementations must embed UnimplementedAlbumsServiceServer
 // for forward compatibility.
 type AlbumsServiceServer interface {
 	AlbumInfo(context.Context, *AlbumInfoReq) (*AlbumInfoRes, error)
+	AlbumSearch(context.Context, *AlbumSearchReq) (*AlbumSearchRes, error)
 	mustEmbedUnimplementedAlbumsServiceServer()
 }
 
@@ -64,6 +77,9 @@ type UnimplementedAlbumsServiceServer struct{}
 
 func (UnimplementedAlbumsServiceServer) AlbumInfo(context.Context, *AlbumInfoReq) (*AlbumInfoRes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AlbumInfo not implemented")
+}
+func (UnimplementedAlbumsServiceServer) AlbumSearch(context.Context, *AlbumSearchReq) (*AlbumSearchRes, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AlbumSearch not implemented")
 }
 func (UnimplementedAlbumsServiceServer) mustEmbedUnimplementedAlbumsServiceServer() {}
 func (UnimplementedAlbumsServiceServer) testEmbeddedByValue()                       {}
@@ -104,6 +120,24 @@ func _AlbumsService_AlbumInfo_Handler(srv interface{}, ctx context.Context, dec 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _AlbumsService_AlbumSearch_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AlbumSearchReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AlbumsServiceServer).AlbumSearch(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AlbumsService_AlbumSearch_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AlbumsServiceServer).AlbumSearch(ctx, req.(*AlbumSearchReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // AlbumsService_ServiceDesc is the grpc.ServiceDesc for AlbumsService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -114,6 +148,10 @@ var AlbumsService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "AlbumInfo",
 			Handler:    _AlbumsService_AlbumInfo_Handler,
+		},
+		{
+			MethodName: "AlbumSearch",
+			Handler:    _AlbumsService_AlbumSearch_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
