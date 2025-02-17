@@ -25,7 +25,13 @@ message ArtistInfoRes {
 }
 
 message ArtistSearchRes {
+    repeated ArtistSearch artists = 1;
+}
+
+message ArtistSearch {
     string name = 1;
+
+    int32 listeners = 2;
 }
 
 service ArtistsService {

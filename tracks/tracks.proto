@@ -28,6 +28,10 @@ message TrackInfoRes {
 }
 
 message TrackSearchRes {
+    repeated TrackSearch tracks = 1;
+}
+
+message TrackSearch {
     string name = 1;
     string artist = 2;
 

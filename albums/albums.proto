@@ -36,6 +36,10 @@ message AlbumTrackInfo {
 }
 
 message AlbumSearchRes {
+    repeated AlbumSearch albums = 1;
+}
+
+message AlbumSearch {
     string name = 1;
     string artist = 2;
 }
