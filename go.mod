@@ -1,4 +1,4 @@
-module github.com/vpsyukalovzuzex/lastfm-protos
+module github.com/vpsyukalovzuzex/lastfm-protos/v2
 
 go 1.22.0
 
