@@ -215,8 +215,8 @@ message DeleteTrackReq {
 }
 
 message TracksGenresReq {
-    int32 artistID = 1;
-    int32 trackID = 2;
+    int32 trackID = 1;
+    int32 genreID = 2;
 }
 
 service UploadTrackService {

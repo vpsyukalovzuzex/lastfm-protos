@@ -15,6 +15,8 @@ message SearchWithGenresReq {
     repeated string genres = 1;
 }
 
+// Albums
+
 message SearchAlbumsRes {
     repeated AlbumsRes albums = 1;
 }
@@ -31,6 +33,13 @@ message AlbumsRes {
     google.protobuf.Timestamp updated_at = 6;
 }
 
+service SearchAlbumsService {
+    rpc SearchAlbumsWithName(SearchWithNameReq) returns (SearchAlbumsRes);
+    rpc SearchAlbumsWithGenres(SearchWithGenresReq) returns (SearchAlbumsRes);
+}
+
+// Artists
+
 message SearchArtistsRes {
     repeated ArtistRes artists = 1;
 }
@@ -46,6 +55,13 @@ message ArtistRes {
     google.protobuf.Timestamp created_at = 5;
     google.protobuf.Timestamp updated_at = 6;
 }
+
+service SearchArtistsService {
+    rpc SearchArtistsWithName(SearchWithNameReq) returns (SearchArtistsRes);
+    rpc SearchArtistsWithGenres(SearchWithGenresReq) returns (SearchArtistsRes);
+}
+
+// Tracks
 
 message SearchTracksRes {
     repeated TrackRes tracks = 1;
@@ -64,16 +80,6 @@ message TrackRes {
 
     google.protobuf.Timestamp created_at = 7;
     google.protobuf.Timestamp updated_at = 8;
-}
-
-service SearchAlbumsService {
-    rpc SearchAlbumsWithName(SearchWithNameReq) returns (SearchAlbumsRes);
-    rpc SearchAlbumsWithGenres(SearchWithGenresReq) returns (SearchAlbumsRes);
-}
-
-service SearchArtistsService {
-    rpc SearchArtistsWithName(SearchWithNameReq) returns (SearchArtistsRes);
-    rpc SearchArtistsWithGenres(SearchWithGenresReq) returns (SearchArtistsRes);
 }
 
 service SearchTracksService {
