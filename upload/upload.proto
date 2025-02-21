@@ -63,7 +63,7 @@ message AlbumsGenresReq {
     int32 genreID = 2;
 }
 
-service UploadAlbumsService {
+service UploadAlbumService {
     rpc CreateAlbum(CreateAlbumReq) returns (CreateAlbumRes);
     rpc UpdateAlbum(UpdateAlbumReq) returns (UpdateAlbumRes);
     rpc DeleteAlbum(DeleteAlbumReq) returns (google.protobuf.Empty);
@@ -152,7 +152,7 @@ message CreateGenreRes {
     google.protobuf.Timestamp updated_at = 4;
 }
 
-service UploadGenresService {
+service UploadGenreService {
     rpc CreateGenre(CreateGenreReq) returns (CreateGenreRes);
 }
 

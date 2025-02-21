@@ -20,17 +20,17 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	UploadAlbumsService_CreateAlbum_FullMethodName      = "/proto.UploadAlbumsService/CreateAlbum"
-	UploadAlbumsService_UpdateAlbum_FullMethodName      = "/proto.UploadAlbumsService/UpdateAlbum"
-	UploadAlbumsService_DeleteAlbum_FullMethodName      = "/proto.UploadAlbumsService/DeleteAlbum"
-	UploadAlbumsService_AddToAlbumArtist_FullMethodName = "/proto.UploadAlbumsService/AddToAlbumArtist"
-	UploadAlbumsService_AddToAlbumGenre_FullMethodName  = "/proto.UploadAlbumsService/AddToAlbumGenre"
+	UploadAlbumService_CreateAlbum_FullMethodName      = "/proto.UploadAlbumService/CreateAlbum"
+	UploadAlbumService_UpdateAlbum_FullMethodName      = "/proto.UploadAlbumService/UpdateAlbum"
+	UploadAlbumService_DeleteAlbum_FullMethodName      = "/proto.UploadAlbumService/DeleteAlbum"
+	UploadAlbumService_AddToAlbumArtist_FullMethodName = "/proto.UploadAlbumService/AddToAlbumArtist"
+	UploadAlbumService_AddToAlbumGenre_FullMethodName  = "/proto.UploadAlbumService/AddToAlbumGenre"
 )
 
-// UploadAlbumsServiceClient is the client API for UploadAlbumsService service.
+// UploadAlbumServiceClient is the client API for UploadAlbumService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type UploadAlbumsServiceClient interface {
+type UploadAlbumServiceClient interface {
 	CreateAlbum(ctx context.Context, in *CreateAlbumReq, opts ...grpc.CallOption) (*CreateAlbumRes, error)
 	UpdateAlbum(ctx context.Context, in *UpdateAlbumReq, opts ...grpc.CallOption) (*UpdateAlbumRes, error)
 	DeleteAlbum(ctx context.Context, in *DeleteAlbumReq, opts ...grpc.CallOption) (*emptypb.Empty, error)
@@ -38,235 +38,235 @@ type UploadAlbumsServiceClient interface {
 	AddToAlbumGenre(ctx context.Context, in *AlbumsGenresReq, opts ...grpc.CallOption) (*emptypb.Empty, error)
 }
 
-type uploadAlbumsServiceClient struct {
+type uploadAlbumServiceClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewUploadAlbumsServiceClient(cc grpc.ClientConnInterface) UploadAlbumsServiceClient {
-	return &uploadAlbumsServiceClient{cc}
+func NewUploadAlbumServiceClient(cc grpc.ClientConnInterface) UploadAlbumServiceClient {
+	return &uploadAlbumServiceClient{cc}
 }
 
-func (c *uploadAlbumsServiceClient) CreateAlbum(ctx context.Context, in *CreateAlbumReq, opts ...grpc.CallOption) (*CreateAlbumRes, error) {
+func (c *uploadAlbumServiceClient) CreateAlbum(ctx context.Context, in *CreateAlbumReq, opts ...grpc.CallOption) (*CreateAlbumRes, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(CreateAlbumRes)
-	err := c.cc.Invoke(ctx, UploadAlbumsService_CreateAlbum_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, UploadAlbumService_CreateAlbum_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *uploadAlbumsServiceClient) UpdateAlbum(ctx context.Context, in *UpdateAlbumReq, opts ...grpc.CallOption) (*UpdateAlbumRes, error) {
+func (c *uploadAlbumServiceClient) UpdateAlbum(ctx context.Context, in *UpdateAlbumReq, opts ...grpc.CallOption) (*UpdateAlbumRes, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(UpdateAlbumRes)
-	err := c.cc.Invoke(ctx, UploadAlbumsService_UpdateAlbum_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, UploadAlbumService_UpdateAlbum_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *uploadAlbumsServiceClient) DeleteAlbum(ctx context.Context, in *DeleteAlbumReq, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+func (c *uploadAlbumServiceClient) DeleteAlbum(ctx context.Context, in *DeleteAlbumReq, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(emptypb.Empty)
-	err := c.cc.Invoke(ctx, UploadAlbumsService_DeleteAlbum_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, UploadAlbumService_DeleteAlbum_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *uploadAlbumsServiceClient) AddToAlbumArtist(ctx context.Context, in *AlbumsArtistsReq, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+func (c *uploadAlbumServiceClient) AddToAlbumArtist(ctx context.Context, in *AlbumsArtistsReq, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(emptypb.Empty)
-	err := c.cc.Invoke(ctx, UploadAlbumsService_AddToAlbumArtist_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, UploadAlbumService_AddToAlbumArtist_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *uploadAlbumsServiceClient) AddToAlbumGenre(ctx context.Context, in *AlbumsGenresReq, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+func (c *uploadAlbumServiceClient) AddToAlbumGenre(ctx context.Context, in *AlbumsGenresReq, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(emptypb.Empty)
-	err := c.cc.Invoke(ctx, UploadAlbumsService_AddToAlbumGenre_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, UploadAlbumService_AddToAlbumGenre_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// UploadAlbumsServiceServer is the server API for UploadAlbumsService service.
-// All implementations must embed UnimplementedUploadAlbumsServiceServer
+// UploadAlbumServiceServer is the server API for UploadAlbumService service.
+// All implementations must embed UnimplementedUploadAlbumServiceServer
 // for forward compatibility.
-type UploadAlbumsServiceServer interface {
+type UploadAlbumServiceServer interface {
 	CreateAlbum(context.Context, *CreateAlbumReq) (*CreateAlbumRes, error)
 	UpdateAlbum(context.Context, *UpdateAlbumReq) (*UpdateAlbumRes, error)
 	DeleteAlbum(context.Context, *DeleteAlbumReq) (*emptypb.Empty, error)
 	AddToAlbumArtist(context.Context, *AlbumsArtistsReq) (*emptypb.Empty, error)
 	AddToAlbumGenre(context.Context, *AlbumsGenresReq) (*emptypb.Empty, error)
-	mustEmbedUnimplementedUploadAlbumsServiceServer()
+	mustEmbedUnimplementedUploadAlbumServiceServer()
 }
 
-// UnimplementedUploadAlbumsServiceServer must be embedded to have
+// UnimplementedUploadAlbumServiceServer must be embedded to have
 // forward compatible implementations.
 //
 // NOTE: this should be embedded by value instead of pointer to avoid a nil
 // pointer dereference when methods are called.
-type UnimplementedUploadAlbumsServiceServer struct{}
+type UnimplementedUploadAlbumServiceServer struct{}
 
-func (UnimplementedUploadAlbumsServiceServer) CreateAlbum(context.Context, *CreateAlbumReq) (*CreateAlbumRes, error) {
+func (UnimplementedUploadAlbumServiceServer) CreateAlbum(context.Context, *CreateAlbumReq) (*CreateAlbumRes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateAlbum not implemented")
 }
-func (UnimplementedUploadAlbumsServiceServer) UpdateAlbum(context.Context, *UpdateAlbumReq) (*UpdateAlbumRes, error) {
+func (UnimplementedUploadAlbumServiceServer) UpdateAlbum(context.Context, *UpdateAlbumReq) (*UpdateAlbumRes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateAlbum not implemented")
 }
-func (UnimplementedUploadAlbumsServiceServer) DeleteAlbum(context.Context, *DeleteAlbumReq) (*emptypb.Empty, error) {
+func (UnimplementedUploadAlbumServiceServer) DeleteAlbum(context.Context, *DeleteAlbumReq) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteAlbum not implemented")
 }
-func (UnimplementedUploadAlbumsServiceServer) AddToAlbumArtist(context.Context, *AlbumsArtistsReq) (*emptypb.Empty, error) {
+func (UnimplementedUploadAlbumServiceServer) AddToAlbumArtist(context.Context, *AlbumsArtistsReq) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AddToAlbumArtist not implemented")
 }
-func (UnimplementedUploadAlbumsServiceServer) AddToAlbumGenre(context.Context, *AlbumsGenresReq) (*emptypb.Empty, error) {
+func (UnimplementedUploadAlbumServiceServer) AddToAlbumGenre(context.Context, *AlbumsGenresReq) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AddToAlbumGenre not implemented")
 }
-func (UnimplementedUploadAlbumsServiceServer) mustEmbedUnimplementedUploadAlbumsServiceServer() {}
-func (UnimplementedUploadAlbumsServiceServer) testEmbeddedByValue()                             {}
+func (UnimplementedUploadAlbumServiceServer) mustEmbedUnimplementedUploadAlbumServiceServer() {}
+func (UnimplementedUploadAlbumServiceServer) testEmbeddedByValue()                            {}
 
-// UnsafeUploadAlbumsServiceServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to UploadAlbumsServiceServer will
+// UnsafeUploadAlbumServiceServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to UploadAlbumServiceServer will
 // result in compilation errors.
-type UnsafeUploadAlbumsServiceServer interface {
-	mustEmbedUnimplementedUploadAlbumsServiceServer()
+type UnsafeUploadAlbumServiceServer interface {
+	mustEmbedUnimplementedUploadAlbumServiceServer()
 }
 
-func RegisterUploadAlbumsServiceServer(s grpc.ServiceRegistrar, srv UploadAlbumsServiceServer) {
-	// If the following call pancis, it indicates UnimplementedUploadAlbumsServiceServer was
+func RegisterUploadAlbumServiceServer(s grpc.ServiceRegistrar, srv UploadAlbumServiceServer) {
+	// If the following call pancis, it indicates UnimplementedUploadAlbumServiceServer was
 	// embedded by pointer and is nil.  This will cause panics if an
 	// unimplemented method is ever invoked, so we test this at initialization
 	// time to prevent it from happening at runtime later due to I/O.
 	if t, ok := srv.(interface{ testEmbeddedByValue() }); ok {
 		t.testEmbeddedByValue()
 	}
-	s.RegisterService(&UploadAlbumsService_ServiceDesc, srv)
+	s.RegisterService(&UploadAlbumService_ServiceDesc, srv)
 }
 
-func _UploadAlbumsService_CreateAlbum_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _UploadAlbumService_CreateAlbum_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(CreateAlbumReq)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(UploadAlbumsServiceServer).CreateAlbum(ctx, in)
+		return srv.(UploadAlbumServiceServer).CreateAlbum(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: UploadAlbumsService_CreateAlbum_FullMethodName,
+		FullMethod: UploadAlbumService_CreateAlbum_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UploadAlbumsServiceServer).CreateAlbum(ctx, req.(*CreateAlbumReq))
+		return srv.(UploadAlbumServiceServer).CreateAlbum(ctx, req.(*CreateAlbumReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _UploadAlbumsService_UpdateAlbum_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _UploadAlbumService_UpdateAlbum_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(UpdateAlbumReq)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(UploadAlbumsServiceServer).UpdateAlbum(ctx, in)
+		return srv.(UploadAlbumServiceServer).UpdateAlbum(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: UploadAlbumsService_UpdateAlbum_FullMethodName,
+		FullMethod: UploadAlbumService_UpdateAlbum_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UploadAlbumsServiceServer).UpdateAlbum(ctx, req.(*UpdateAlbumReq))
+		return srv.(UploadAlbumServiceServer).UpdateAlbum(ctx, req.(*UpdateAlbumReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _UploadAlbumsService_DeleteAlbum_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _UploadAlbumService_DeleteAlbum_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(DeleteAlbumReq)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(UploadAlbumsServiceServer).DeleteAlbum(ctx, in)
+		return srv.(UploadAlbumServiceServer).DeleteAlbum(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: UploadAlbumsService_DeleteAlbum_FullMethodName,
+		FullMethod: UploadAlbumService_DeleteAlbum_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UploadAlbumsServiceServer).DeleteAlbum(ctx, req.(*DeleteAlbumReq))
+		return srv.(UploadAlbumServiceServer).DeleteAlbum(ctx, req.(*DeleteAlbumReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _UploadAlbumsService_AddToAlbumArtist_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _UploadAlbumService_AddToAlbumArtist_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(AlbumsArtistsReq)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(UploadAlbumsServiceServer).AddToAlbumArtist(ctx, in)
+		return srv.(UploadAlbumServiceServer).AddToAlbumArtist(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: UploadAlbumsService_AddToAlbumArtist_FullMethodName,
+		FullMethod: UploadAlbumService_AddToAlbumArtist_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UploadAlbumsServiceServer).AddToAlbumArtist(ctx, req.(*AlbumsArtistsReq))
+		return srv.(UploadAlbumServiceServer).AddToAlbumArtist(ctx, req.(*AlbumsArtistsReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _UploadAlbumsService_AddToAlbumGenre_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _UploadAlbumService_AddToAlbumGenre_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(AlbumsGenresReq)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(UploadAlbumsServiceServer).AddToAlbumGenre(ctx, in)
+		return srv.(UploadAlbumServiceServer).AddToAlbumGenre(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: UploadAlbumsService_AddToAlbumGenre_FullMethodName,
+		FullMethod: UploadAlbumService_AddToAlbumGenre_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UploadAlbumsServiceServer).AddToAlbumGenre(ctx, req.(*AlbumsGenresReq))
+		return srv.(UploadAlbumServiceServer).AddToAlbumGenre(ctx, req.(*AlbumsGenresReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-// UploadAlbumsService_ServiceDesc is the grpc.ServiceDesc for UploadAlbumsService service.
+// UploadAlbumService_ServiceDesc is the grpc.ServiceDesc for UploadAlbumService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
-var UploadAlbumsService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "proto.UploadAlbumsService",
-	HandlerType: (*UploadAlbumsServiceServer)(nil),
+var UploadAlbumService_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "proto.UploadAlbumService",
+	HandlerType: (*UploadAlbumServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
 			MethodName: "CreateAlbum",
-			Handler:    _UploadAlbumsService_CreateAlbum_Handler,
+			Handler:    _UploadAlbumService_CreateAlbum_Handler,
 		},
 		{
 			MethodName: "UpdateAlbum",
-			Handler:    _UploadAlbumsService_UpdateAlbum_Handler,
+			Handler:    _UploadAlbumService_UpdateAlbum_Handler,
 		},
 		{
 			MethodName: "DeleteAlbum",
-			Handler:    _UploadAlbumsService_DeleteAlbum_Handler,
+			Handler:    _UploadAlbumService_DeleteAlbum_Handler,
 		},
 		{
 			MethodName: "AddToAlbumArtist",
-			Handler:    _UploadAlbumsService_AddToAlbumArtist_Handler,
+			Handler:    _UploadAlbumService_AddToAlbumArtist_Handler,
 		},
 		{
 			MethodName: "AddToAlbumGenre",
-			Handler:    _UploadAlbumsService_AddToAlbumGenre_Handler,
+			Handler:    _UploadAlbumService_AddToAlbumGenre_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
@@ -528,101 +528,101 @@ var UploadArtistService_ServiceDesc = grpc.ServiceDesc{
 }
 
 const (
-	UploadGenresService_CreateGenre_FullMethodName = "/proto.UploadGenresService/CreateGenre"
+	UploadGenreService_CreateGenre_FullMethodName = "/proto.UploadGenreService/CreateGenre"
 )
 
-// UploadGenresServiceClient is the client API for UploadGenresService service.
+// UploadGenreServiceClient is the client API for UploadGenreService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type UploadGenresServiceClient interface {
+type UploadGenreServiceClient interface {
 	CreateGenre(ctx context.Context, in *CreateGenreReq, opts ...grpc.CallOption) (*CreateGenreRes, error)
 }
 
-type uploadGenresServiceClient struct {
+type uploadGenreServiceClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewUploadGenresServiceClient(cc grpc.ClientConnInterface) UploadGenresServiceClient {
-	return &uploadGenresServiceClient{cc}
+func NewUploadGenreServiceClient(cc grpc.ClientConnInterface) UploadGenreServiceClient {
+	return &uploadGenreServiceClient{cc}
 }
 
-func (c *uploadGenresServiceClient) CreateGenre(ctx context.Context, in *CreateGenreReq, opts ...grpc.CallOption) (*CreateGenreRes, error) {
+func (c *uploadGenreServiceClient) CreateGenre(ctx context.Context, in *CreateGenreReq, opts ...grpc.CallOption) (*CreateGenreRes, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(CreateGenreRes)
-	err := c.cc.Invoke(ctx, UploadGenresService_CreateGenre_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, UploadGenreService_CreateGenre_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// UploadGenresServiceServer is the server API for UploadGenresService service.
-// All implementations must embed UnimplementedUploadGenresServiceServer
+// UploadGenreServiceServer is the server API for UploadGenreService service.
+// All implementations must embed UnimplementedUploadGenreServiceServer
 // for forward compatibility.
-type UploadGenresServiceServer interface {
+type UploadGenreServiceServer interface {
 	CreateGenre(context.Context, *CreateGenreReq) (*CreateGenreRes, error)
-	mustEmbedUnimplementedUploadGenresServiceServer()
+	mustEmbedUnimplementedUploadGenreServiceServer()
 }
 
-// UnimplementedUploadGenresServiceServer must be embedded to have
+// UnimplementedUploadGenreServiceServer must be embedded to have
 // forward compatible implementations.
 //
 // NOTE: this should be embedded by value instead of pointer to avoid a nil
 // pointer dereference when methods are called.
-type UnimplementedUploadGenresServiceServer struct{}
+type UnimplementedUploadGenreServiceServer struct{}
 
-func (UnimplementedUploadGenresServiceServer) CreateGenre(context.Context, *CreateGenreReq) (*CreateGenreRes, error) {
+func (UnimplementedUploadGenreServiceServer) CreateGenre(context.Context, *CreateGenreReq) (*CreateGenreRes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateGenre not implemented")
 }
-func (UnimplementedUploadGenresServiceServer) mustEmbedUnimplementedUploadGenresServiceServer() {}
-func (UnimplementedUploadGenresServiceServer) testEmbeddedByValue()                             {}
+func (UnimplementedUploadGenreServiceServer) mustEmbedUnimplementedUploadGenreServiceServer() {}
+func (UnimplementedUploadGenreServiceServer) testEmbeddedByValue()                            {}
 
-// UnsafeUploadGenresServiceServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to UploadGenresServiceServer will
+// UnsafeUploadGenreServiceServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to UploadGenreServiceServer will
 // result in compilation errors.
-type UnsafeUploadGenresServiceServer interface {
-	mustEmbedUnimplementedUploadGenresServiceServer()
+type UnsafeUploadGenreServiceServer interface {
+	mustEmbedUnimplementedUploadGenreServiceServer()
 }
 
-func RegisterUploadGenresServiceServer(s grpc.ServiceRegistrar, srv UploadGenresServiceServer) {
-	// If the following call pancis, it indicates UnimplementedUploadGenresServiceServer was
+func RegisterUploadGenreServiceServer(s grpc.ServiceRegistrar, srv UploadGenreServiceServer) {
+	// If the following call pancis, it indicates UnimplementedUploadGenreServiceServer was
 	// embedded by pointer and is nil.  This will cause panics if an
 	// unimplemented method is ever invoked, so we test this at initialization
 	// time to prevent it from happening at runtime later due to I/O.
 	if t, ok := srv.(interface{ testEmbeddedByValue() }); ok {
 		t.testEmbeddedByValue()
 	}
-	s.RegisterService(&UploadGenresService_ServiceDesc, srv)
+	s.RegisterService(&UploadGenreService_ServiceDesc, srv)
 }
 
-func _UploadGenresService_CreateGenre_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _UploadGenreService_CreateGenre_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(CreateGenreReq)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(UploadGenresServiceServer).CreateGenre(ctx, in)
+		return srv.(UploadGenreServiceServer).CreateGenre(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: UploadGenresService_CreateGenre_FullMethodName,
+		FullMethod: UploadGenreService_CreateGenre_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UploadGenresServiceServer).CreateGenre(ctx, req.(*CreateGenreReq))
+		return srv.(UploadGenreServiceServer).CreateGenre(ctx, req.(*CreateGenreReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-// UploadGenresService_ServiceDesc is the grpc.ServiceDesc for UploadGenresService service.
+// UploadGenreService_ServiceDesc is the grpc.ServiceDesc for UploadGenreService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
-var UploadGenresService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "proto.UploadGenresService",
-	HandlerType: (*UploadGenresServiceServer)(nil),
+var UploadGenreService_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "proto.UploadGenreService",
+	HandlerType: (*UploadGenreServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
 			MethodName: "CreateGenre",
-			Handler:    _UploadGenresService_CreateGenre_Handler,
+			Handler:    _UploadGenreService_CreateGenre_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
