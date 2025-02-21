@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-option go_package = "last-fm-proto/artists";
+option go_package = "lastfm-protos/artists";
 
 package proto;
 

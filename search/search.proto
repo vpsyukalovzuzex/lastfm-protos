@@ -1,0 +1,85 @@
+syntax = "proto3";
+
+option go_package = "lastfm-protos/search";
+
+package proto;
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/timestamp.proto";
+
+message SearchWithNameReq {
+    string name = 1;
+}
+
+message SearchWithGenresReq {
+    repeated string genres = 1;
+}
+
+message SearchAlbumsRes {
+    repeated AlbumsRes albums = 1;
+}
+
+message AlbumsRes {
+    int32 ID = 1;
+
+    string name = 2;
+
+    int32 listeners = 3;
+    int32 playcounts = 4;
+
+    google.protobuf.Timestamp created_at = 5;
+    google.protobuf.Timestamp updated_at = 6;
+}
+
+message SearchArtistsRes {
+    repeated ArtistRes artists = 1;
+}
+
+message ArtistRes {
+    int32 ID = 1;
+
+    string name = 2;
+
+    int32 listeners = 3;
+    int32 playcounts = 4;
+
+    google.protobuf.Timestamp created_at = 5;
+    google.protobuf.Timestamp updated_at = 6;
+}
+
+message SearchTracksRes {
+    repeated TrackRes tracks = 1;
+}
+
+message TrackRes {
+    int32 ID = 1;
+    
+    string name = 2;
+
+    int32 duration = 3;
+    int32 listeners = 4;
+    int32 playcounts = 5;
+
+    int32 albumID = 6;
+
+    google.protobuf.Timestamp created_at = 7;
+    google.protobuf.Timestamp updated_at = 8;
+}
+
+service SearchAlbumsService {
+    rpc SearchAlbumsWithName(SearchWithNameReq) returns (SearchAlbumsRes);
+    rpc SearchAlbumsWithGenres(SearchWithGenresReq) returns (SearchAlbumsRes);
+}
+
+service SearchArtistsService {
+    rpc SearchArtistsWithName(SearchWithNameReq) returns (SearchArtistsRes);
+    rpc SearchArtistsWithGenres(SearchWithGenresReq) returns (SearchArtistsRes);
+}
+
+service SearchTracksService {
+    rpc SearchTracksWithName(SearchWithNameReq) returns (SearchTracksRes);
+    rpc SearchTracksWithGenres(SearchWithGenresReq) returns (SearchTracksRes);
+
+    rpc ListenersChart(google.protobuf.Empty) returns (SearchTracksRes);
+    rpc PlaycountsChart(google.protobuf.Empty) returns (SearchTracksRes);
+}

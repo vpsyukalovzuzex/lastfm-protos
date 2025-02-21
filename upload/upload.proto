@@ -1,0 +1,228 @@
+syntax = "proto3";
+
+option go_package = "lastfm-protos/upload";
+
+package proto;
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/timestamp.proto";
+
+// Albums
+
+message CreateAlbumReq {
+    string name = 1;
+
+    int32 listeners = 2;
+    int32 playcounts = 3;
+} 
+
+message CreateAlbumRes {
+    int32 ID = 1;
+
+    string name = 2;
+
+    int32 listeners = 3;
+    int32 playcounts = 4;
+
+    google.protobuf.Timestamp created_at = 5;
+    google.protobuf.Timestamp updated_at = 6;
+}
+
+message UpdateAlbumReq {
+    int32 ID = 1;
+
+    string name = 2;
+
+    int32 listeners = 3;
+    int32 playcounts = 4;
+}
+
+message UpdateAlbumRes {
+    int32 ID = 1;
+
+    string name = 2;
+
+    int32 listeners = 3;
+    int32 playcounts = 4;
+
+    google.protobuf.Timestamp created_at = 5;
+    google.protobuf.Timestamp updated_at = 6;
+}
+
+message DeleteAlbumReq {
+    int32 ID = 1;
+}
+
+message AlbumsArtistsReq {
+    int32 albumID = 1;
+    int32 artistID = 2;
+}
+
+message AlbumsGenresReq {
+    int32 albumID = 1;
+    int32 genreID = 2;
+}
+
+service UploadAlbumsService {
+    rpc CreateAlbum(CreateAlbumReq) returns (CreateAlbumRes);
+    rpc UpdateAlbum(UpdateAlbumReq) returns (UpdateAlbumRes);
+    rpc DeleteAlbum(DeleteAlbumReq) returns (google.protobuf.Empty);
+
+    rpc AddToAlbumArtist(AlbumsArtistsReq) returns (google.protobuf.Empty);
+    rpc AddToAlbumGenre(AlbumsGenresReq) returns (google.protobuf.Empty);
+}
+
+// Artists
+
+message CreateArtistReq {
+    string name = 1;
+
+    int32 listeners = 2;
+    int32 playcounts = 3;
+}
+
+message CreateArtistRes {
+    int32 ID = 1;
+
+    string name = 2;
+
+    int32 listeners = 3;
+    int32 playcounts = 4;
+
+    google.protobuf.Timestamp created_at = 5;
+    google.protobuf.Timestamp updated_at = 6;
+}
+
+message UpdateArtistReq {
+    int32 ID = 1;
+
+    string name = 2;
+
+    int32 listeners = 3;
+    int32 playcounts = 4;
+}
+
+message UpdateArtistRes {
+    int32 ID = 1;
+
+    string name = 2;
+
+    int32 listeners = 3;
+    int32 playcounts = 4;
+
+    google.protobuf.Timestamp created_at = 5;
+    google.protobuf.Timestamp updated_at = 6;
+}
+
+message DeleteArtistReq {
+    int32 ID = 1;
+}
+
+message ArtistsTracksReq {
+    int32 artistID = 1;
+    int32 trackID = 2;
+}
+
+message ArtistsGenresReq {
+    int32 artistID = 1;
+    int32 genreID = 2;
+}
+
+service UploadArtistService {
+    rpc CreateArtist(CreateArtistReq) returns (CreateArtistRes);
+    rpc UpdateArtist(UpdateArtistReq) returns (UpdateArtistRes);
+    rpc DeleteArtist(DeleteArtistReq) returns (google.protobuf.Empty);
+
+    rpc AddToArtistTrack(ArtistsTracksReq) returns (google.protobuf.Empty);
+    rpc AddToArtistGenre(ArtistsGenresReq) returns (google.protobuf.Empty);
+}
+
+// Genres
+
+message CreateGenreReq {
+    string name = 1;
+}
+
+message CreateGenreRes {
+    int32 ID = 1;
+
+    string name = 2;
+
+    google.protobuf.Timestamp created_at = 3;
+    google.protobuf.Timestamp updated_at = 4;
+}
+
+service UploadGenresService {
+    rpc CreateGenre(CreateGenreReq) returns (CreateGenreRes);
+}
+
+// Tracks
+
+message CreateTrackReq {
+    string name = 1;
+
+    int32 duration = 2;
+    int32 listeners = 3;
+    int32 playcounts = 4;
+
+    int32 albumID = 5;
+}
+
+message CreateTrackRes {
+    int32 ID = 1;
+    
+    string name = 2;
+
+    int32 duration = 3;
+    int32 listeners = 4;
+    int32 playcounts = 5;
+
+    int32 albumID = 6;
+
+    google.protobuf.Timestamp created_at = 7;
+    google.protobuf.Timestamp updated_at = 8;
+}
+
+message UpdateTrackReq {
+    int32 ID = 1;
+
+    string name = 2;
+
+    int32 duration = 3;
+    int32 listeners = 4;
+    int32 playcounts = 5;
+
+    int32 albumID = 6;
+}
+
+message UpdateTrackRes {
+    int32 ID = 1;
+    
+    string name = 2;
+
+    int32 duration = 3;
+    int32 listeners = 4;
+    int32 playcounts = 5;
+
+    int32 albumID = 6;
+
+    google.protobuf.Timestamp created_at = 7;
+    google.protobuf.Timestamp updated_at = 8;
+}
+
+message DeleteTrackReq {
+    int32 ID = 1;
+}
+
+message TracksGenresReq {
+    int32 artistID = 1;
+    int32 trackID = 2;
+}
+
+service UploadTrackService {
+    rpc CreateTrack(CreateTrackReq) returns (CreateTrackRes);
+    rpc UpdateTrack(UpdateTrackReq) returns (UpdateTrackRes);
+    rpc DeleteTrack(DeleteTrackReq) returns (google.protobuf.Empty);
+
+    rpc AddToTrackGenre(TracksGenresReq) returns (google.protobuf.Empty);
+}
